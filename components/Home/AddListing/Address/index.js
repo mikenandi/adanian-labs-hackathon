@@ -33,6 +33,10 @@ function ViewMap() {
 		longitude: region.longitude,
 	});
 
+	const handleNext = () => {
+		dispatch();
+	};
+
 	return (
 		<View style={styles.container}>
 			<MapView
