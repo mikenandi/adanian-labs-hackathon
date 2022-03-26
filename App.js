@@ -1,17 +1,14 @@
 import * as React from "react";
 import {NavigationContainer} from "@react-navigation/native";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
-import {Entypo} from "@expo/vector-icons";
-import {Ionicons} from "@expo/vector-icons";
 import {MaterialCommunityIcons, AntDesign} from "@expo/vector-icons";
 import Home from "./components/Home";
-import Payments from "./components/Payment";
 import color from "./components/colors";
 import {StatusBar, Text} from "react-native";
 import Left from "./components/TopBar/Left";
 import Right from "./components/TopBar/Right";
 import Profile from "./components/Profile";
-import Messages from "./components/Messages";
+
 import {Provider} from "react-redux";
 import {store} from "./components/Store";
 
@@ -36,6 +33,7 @@ function MyTabs() {
 					),
 					headerLeft: () => <Left title='gudsurvey' />,
 					headerRight: () => <Right />,
+					headerShown: true,
 				}}
 			/>
 
@@ -46,10 +44,10 @@ function MyTabs() {
 					title: "",
 					tabBarLabel: "",
 					tabBarIcon: ({color, size}) => (
-						<Ionicons name='person-outline' size={size} color={color} />
+						<AntDesign name='questioncircleo' size={size} color={color} />
 					),
 					headerLeft: () => <Left title='Profile' />,
-					headerShown: false,
+					headerShown: true,
 				}}
 			/>
 		</Tab.Navigator>

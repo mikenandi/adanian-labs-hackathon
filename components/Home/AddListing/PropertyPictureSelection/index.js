@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import {Ionicons} from "@expo/vector-icons";
 import {getPhotos} from "../../../../Helpers/getPhotos";
-import ImageItem from "../ImageItem";
+import ImageItem from "./ImageItem";
 import color from "../../../colors";
 import {useSelector} from "react-redux";
 import {useDispatch} from "react-redux";
@@ -17,11 +17,15 @@ import {
 	clearPhotos,
 	readFromLibrary,
 	setPreviewVisible,
-} from "../Store/imageLibrary/imageSlice";
-import PreviewImages from "./PreviewImages";
+} from "../../../Store/home-store/imageSlice";
 import {formatDataForGrid} from "../../../../Helpers/formatDataForGrid";
+import {hideGallery, showLastStep} from "../../../Store/home-store/modalSlice";
+import LastStep from "../LastStep";
 
 function ImageGalery(props) {
+	const visible = useSelector((state) => {
+		return state.showModal.lastStepVisible;
+	});
 	const warnTextVisible = useSelector((state) => {
 		return state.readImage.warnTextVisible;
 	});
@@ -44,8 +48,8 @@ function ImageGalery(props) {
 
 	const dispatch = useDispatch();
 
-	const handlePreviewImages = () => {
-		dispatch(setPreviewVisible());
+	const handleNext = () => {
+		dispatch(showLastStep());
 	};
 
 	const numColumns = 2;
@@ -58,9 +62,9 @@ function ImageGalery(props) {
 			.catch((err) => console.log(err));
 	}, []);
 
-	const handleBackHomeScreen = () => {
+	const handleBack = () => {
 		dispatch(clearPhotos());
-		props.setAddListingVisible(!props.addListingVisible);
+		dispatch(hideGallery);
 	};
 
 	const renderItem = ({item}) => {
@@ -73,7 +77,7 @@ function ImageGalery(props) {
 				<Ionicons
 					name='arrow-back-outline'
 					size={28}
-					onPress={handleBackHomeScreen}
+					onPress={handleBack}
 					style={styles.backArrow}
 				/>
 				{warnTextVisible && (
@@ -83,7 +87,7 @@ function ImageGalery(props) {
 					<TouchableOpacity
 						activeOpacity={0.8}
 						style={styles.nextButtonContainer}
-						onPress={handlePreviewImages}>
+						onPress={handleNext}>
 						<Text style={styles.buttonText}>NEXT</Text>
 					</TouchableOpacity>
 				)}
@@ -95,8 +99,8 @@ function ImageGalery(props) {
 				initialNumToRender={8}
 				numColumns={numColumns}
 			/>
-			<Modal visible={previewVisible}>
-				<PreviewImages />
+			<Modal animationType='fade' visible={visible} transparent={false}>
+				<LastStep />
 			</Modal>
 		</View>
 	);
@@ -107,14 +111,15 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 	topContainer: {
-		marginHorizontal: 8,
-		marginVertical: 10,
+		paddingHorizontal: 8,
+		paddingVertical: 10,
 		flexDirection: "row",
 		justifyContent: "space-between",
 		alignItems: "center",
+		backgroundColor: color.primary,
 	},
 	backArrow: {
-		color: color.dimblack,
+		color: "white",
 	},
 	textSelectWarning: {
 		fontFamily: "serif",
@@ -123,13 +128,14 @@ const styles = StyleSheet.create({
 		marginRight: 70,
 	},
 	nextButtonContainer: {
-		backgroundColor: color.primary,
+		backgroundColor: "white",
 		paddingHorizontal: 15,
 		paddingVertical: 8,
 		marginRight: 10,
+		borderRadius: 5,
 	},
 	buttonText: {
-		color: "white",
+		color: "black",
 		fontSize: 16,
 		fontWeight: "normal",
 	},

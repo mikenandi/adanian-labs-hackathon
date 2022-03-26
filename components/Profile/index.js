@@ -11,14 +11,16 @@ import color from "../colors";
 function Profile(props) {
 	return (
 		<View style={styles.container}>
-			<View style={styles.greenTopContainer}>
+			{/* <View style={styles.greenTopContainer}>
 				<View style={styles.profileContainer}>
 					<Image
 						source={require("../../assets/mike.jpg")}
 						style={styles.avatar}
 					/>
-					<HeadingM>Michael</HeadingM>
-					<Body>show profile</Body>
+					<View style={styles.nameContainer}>
+						<HeadingS>Michael Nandi</HeadingS>
+						<Body>show profile</Body>
+					</View>
 				</View>
 				<View style={styles.whiteBottomContainer}>
 					<View style={styles.rowContainer}>
@@ -61,7 +63,7 @@ function Profile(props) {
 						<ButtonText>log out</ButtonText>
 					</View>
 				</View>
-			</View>
+			</View> */}
 		</View>
 	);
 }
@@ -130,6 +132,7 @@ const styles = StyleSheet.create({
 		width: 60,
 		height: 60,
 		borderRadius: 30,
+		marginRight: 20,
 	},
 	greenTopContainer: {},
 	rowContainer: {
@@ -149,7 +152,10 @@ const styles = StyleSheet.create({
 	profileContainer: {
 		paddingHorizontal: 30,
 		paddingVertical: 10,
+		flexDirection: "row",
+		height: 120,
 	},
+	nameContainer: {},
 });
 
 export default memo(Profile);

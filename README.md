@@ -1,4 +1,4 @@
-# landlord_app
+# HomAll
 
 ### The app that will enable to people who are in need of property to rent to get contact with their landlords.
 

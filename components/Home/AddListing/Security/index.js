@@ -5,16 +5,21 @@ import {Ionicons} from "@expo/vector-icons";
 import {useDispatch, useSelector} from "react-redux";
 import {ButtonText, HeadingS, Body} from "../../../Typography";
 import {clearSecurity} from "../../../Store/home-store/securitySlice";
-import {hideSecurity, showMap} from "../../../Store/home-store/modalSlice";
+import {
+	hideSecurity,
+	showGallery,
+	showMap,
+} from "../../../Store/home-store/modalSlice";
 import FenceSecurity from "./secuirty-types/fence-security";
 import WatchmanSecurity from "./secuirty-types/watchman-security";
 import FireAlarmSecurity from "./secuirty-types/fire-alarm-security";
 import CctvCameraSecurity from "./secuirty-types/cctv-camera-security";
 import ViewMap from "../Address";
+import Gallery from "../PropertyPictureSelection";
 
 function Security(props) {
 	const visible = useSelector((state) => {
-		return state.showModal.mapVisible;
+		return state.showModal.galeryVisible;
 	});
 
 	const dispatch = useDispatch();
@@ -25,7 +30,7 @@ function Security(props) {
 	};
 
 	const handleNextStep = () => {
-		dispatch(showMap());
+		dispatch(showGallery());
 	};
 
 	return (
@@ -58,7 +63,7 @@ function Security(props) {
 				<View style={styles.rowContainer}></View>
 			</View>
 			<Modal transparent={false} animationType='fade' visible={visible}>
-				<ViewMap />
+				<Gallery />
 			</Modal>
 		</View>
 	);

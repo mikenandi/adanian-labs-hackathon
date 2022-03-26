@@ -12,6 +12,8 @@ const initialState = {
 	flooringVisible: false,
 	securityVisible: false,
 	mapVisible: false,
+	galeryVisible: false,
+	lastStepVisible: false,
 };
 
 export const modalSlice = createSlice({
@@ -78,6 +80,18 @@ export const modalSlice = createSlice({
 		hideMap: (state) => {
 			state.mapVisible = false;
 		},
+		showGallery: (state) => {
+			state.galeryVisible = true;
+		},
+		hideGallery: (state) => {
+			state.galeryVisible = false;
+		},
+		showLastStep: (state) => {
+			state.lastStepVisible = true;
+		},
+		hideLastStep: (state) => {
+			state.lastStepVisible = false;
+		},
 	},
 });
 
@@ -102,6 +116,10 @@ export const {
 	hideSecurity,
 	showMap,
 	hideMap,
+	showGallery,
+	hideGallery,
+	showLastStep,
+	hideLastStep,
 } = modalSlice.actions;
 
 export default modalSlice.reducer;
