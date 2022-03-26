@@ -1,21 +1,74 @@
 import React, {memo, useState} from "react";
 import {View, Text, StyleSheet, Image, TouchableOpacity} from "react-native";
-import {Caption, BodyS, HeadingL} from "../Typography";
+import {Caption, Body, HeadingM, HeadingS, ButtonText} from "../Typography";
+import {Ionicons} from "@expo/vector-icons";
+import {MaterialIcons} from "@expo/vector-icons";
+import {Feather} from "@expo/vector-icons";
+import {AntDesign} from "@expo/vector-icons";
+import {Entypo} from "@expo/vector-icons";
+import color from "../colors";
 
 function Profile(props) {
-	const editProfileHandler = () => {};
-
 	return (
 		<View style={styles.container}>
-			<HeadingL>Profile and settings page.</HeadingL>
+			<View style={styles.greenTopContainer}>
+				<View style={styles.profileContainer}>
+					<Image
+						source={require("../../assets/mike.jpg")}
+						style={styles.avatar}
+					/>
+					<HeadingM>Michael</HeadingM>
+					<Body>show profile</Body>
+				</View>
+				<View style={styles.whiteBottomContainer}>
+					<View style={styles.rowContainer}>
+						<View style={styles.innerRowContainer}>
+							<Ionicons
+								name='md-person-circle-outline'
+								size={24}
+								color='black'
+							/>
+							<HeadingM>Personal info</HeadingM>
+						</View>
+						<MaterialIcons name='navigate-next' size={24} color='black' />
+					</View>
+					<View>
+						<HeadingM>Listings</HeadingM>
+						<View style={styles.rowContainer}>
+							<View style={styles.innerRowContainer}>
+								<Entypo name='add-to-list' size={24} color='black' />
+								<HeadingS>Add new listing</HeadingS>
+							</View>
+							<MaterialIcons name='navigate-next' size={24} color='black' />
+						</View>
+						<View style={styles.rowContainer}>
+							<View style={styles.innerRowContainer}>
+								<Feather name='list' size={24} color='black' />
+								<HeadingS>My listings</HeadingS>
+							</View>
+							<MaterialIcons name='navigate-next' size={24} color='black' />
+						</View>
+					</View>
+					<View style={styles.rowContainer}>
+						<View style={styles.innerRowContainer}>
+							<Feather name='settings' size={24} color='black' />
+							<HeadingM>Setings</HeadingM>
+						</View>
+
+						<MaterialIcons name='navigate-next' size={24} color='black' />
+					</View>
+					<View>
+						<ButtonText>log out</ButtonText>
+					</View>
+				</View>
+			</View>
 		</View>
 	);
 }
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		display: "flex",
-		alignItems: "flex-start",
+		backgroundColor: color.primary,
 	},
 	ImageContainer: {
 		marginLeft: 15,
@@ -73,6 +126,31 @@ const styles = StyleSheet.create({
 		margin: 4,
 		fontSize: 17,
 	},
+	avatar: {
+		width: 60,
+		height: 60,
+		borderRadius: 30,
+	},
+	greenTopContainer: {},
+	rowContainer: {
+		flexDirection: "row",
+		justifyContent: "space-between",
+	},
+	innerRowContainer: {
+		flexDirection: "row",
+	},
+	whiteBottomContainer: {
+		height: "100%",
+		backgroundColor: "white",
+		borderTopRightRadius: 20,
+		borderTopLeftRadius: 20,
+		padding: 20,
+	},
+	profileContainer: {
+		paddingHorizontal: 30,
+		paddingVertical: 10,
+	},
 });
 
 export default memo(Profile);
+//

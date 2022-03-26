@@ -1,7 +1,7 @@
 {
 	"expo": {
-		"name": "gudsurvey_landlord",
-		"slug": "gudsurvey_landlord",
+		"name": "rentify",
+		"slug": "rentify",
 		"version": "1.0.0",
 		"orientation": "portrait",
 		"icon": "./assets/icon.png",

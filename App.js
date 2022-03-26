@@ -40,30 +40,6 @@ function MyTabs() {
 			/>
 
 			<Tab.Screen
-				name='Payments'
-				component={Payments}
-				options={{
-					title: "",
-					tabBarLabel: "",
-					tabBarIcon: ({color, size}) => (
-						<AntDesign name='swap' size={size} color={color} />
-					),
-					headerLeft: () => <Left title='Payments' />,
-				}}
-			/>
-			<Tab.Screen
-				name='Messages'
-				component={Messages}
-				options={{
-					title: "",
-					tabBarLabel: "",
-					tabBarIcon: ({color, size}) => (
-						<Ionicons name='chatbox-outline' size={size} color={color} />
-					),
-					headerLeft: () => <Left />,
-				}}
-			/>
-			<Tab.Screen
 				name='Profile'
 				component={Profile}
 				options={{
@@ -73,7 +49,7 @@ function MyTabs() {
 						<Ionicons name='person-outline' size={size} color={color} />
 					),
 					headerLeft: () => <Left title='Profile' />,
-					headerShown: true,
+					headerShown: false,
 				}}
 			/>
 		</Tab.Navigator>
@@ -84,7 +60,7 @@ export default function App() {
 	return (
 		<Provider store={store}>
 			<NavigationContainer>
-				<StatusBar backgroundColor={color.lightgray} />
+				<StatusBar backgroundColor='gray' />
 				<MyTabs />
 			</NavigationContainer>
 		</Provider>
